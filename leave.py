@@ -6,9 +6,9 @@ from discord.ext import commands, tasks
 
 
 client = discord.Client()   
-client= commands.Bot(command_prefix="none", self_bot=True)
+client= commands.Bot(command_prefix=">", self_bot=True)
 client.remove_command("help")
-token = "token here"
+token = input("Token > ")
 
 
 
@@ -21,6 +21,7 @@ async def on_connect():
         try: 
              await guild.leave()
         except:
-            print("Cannot leave server")
+            await guild.delete()
+            
 
 client.run(token, reconnect=True, bot=False)
